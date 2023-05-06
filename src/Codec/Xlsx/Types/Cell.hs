@@ -31,7 +31,6 @@ import Data.Default
 import Data.Map (Map)
 import qualified Data.Map as M
 import Data.Maybe (catMaybes, listToMaybe)
-import Data.Monoid ((<>))
 import Data.Text (Text)
 import GHC.Generics (Generic)
 import Text.XML

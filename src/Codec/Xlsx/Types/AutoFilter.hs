@@ -21,7 +21,6 @@ import Data.Foldable (asum)
 import Data.Map (Map)
 import qualified Data.Map as M
 import Data.Maybe (catMaybes)
-import Data.Monoid ((<>))
 import Data.Text (Text)
 import qualified Data.Text as T
 import GHC.Generics (Generic)

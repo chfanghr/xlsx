@@ -44,7 +44,6 @@ import Data.Char (isSpace)
 import Data.Default
 import qualified Data.Map as M
 import Data.Maybe (catMaybes, maybeToList)
-import Data.Monoid ((<>))
 import Data.Text (Text)
 import qualified Data.Text as T
 import GHC.Generics (Generic)

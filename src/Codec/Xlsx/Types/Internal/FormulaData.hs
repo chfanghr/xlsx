@@ -3,7 +3,6 @@
 {-# LANGUAGE RecordWildCards #-}
 module Codec.Xlsx.Types.Internal.FormulaData where
 
-import Data.Monoid ((<>))
 import Data.Text (Text)
 import qualified Data.Text as T
 import GHC.Generics (Generic)

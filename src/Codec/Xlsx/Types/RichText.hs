@@ -340,13 +340,16 @@ instance Semigroup RunProperties where
       override :: (RunProperties -> Maybe x) -> Maybe x
       override f = f b `mplus` f a
 
-#endif
+instance Monoid RunProperties where
+  mempty = def
+
+#elif
 
 -- | The 'Monoid' instance for 'RunProperties' is biased: later properties
 -- override earlier ones.
 instance Monoid RunProperties where
   mempty = def
-  a `mappend` b = RunProperties {
+  a <> b = RunProperties {
       _runPropertiesBold          = override _runPropertiesBold
     , _runPropertiesCharset       = override _runPropertiesCharset
     , _runPropertiesColor         = override _runPropertiesColor
@@ -366,6 +369,7 @@ instance Monoid RunProperties where
     where
       override :: (RunProperties -> Maybe x) -> Maybe x
       override f = f b `mplus` f a
+#endif
 
 -- | Apply properties to a 'RichTextRun'
 --

@@ -36,11 +36,11 @@ parseBuf buf _ processExtra = withForeignPtr buf $ \pBuf -> doit [] pBuf 0
                 let pName = pBuf `plusPtr` (offset + 4)
                 lName <- fromIntegral <$> c_strlen pName
                 let name = gxFromByteString $ I.fromForeignPtr buf (offset + 4) lName
-                (atts, offset') <- foldM (\(atts, offset) _ -> do
-                        let pAtt = pBuf `plusPtr` offset
+                (atts, offset') <- foldM (\(atts, offset'') _ -> do
+                        let pAtt = pBuf `plusPtr` offset''
                         lAtt <- fromIntegral <$> c_strlen pAtt
-                        let att = gxFromByteString $ I.fromForeignPtr buf offset lAtt
-                            offset' = offset + lAtt + 1
+                        let att = gxFromByteString $ I.fromForeignPtr buf offset'' lAtt
+                            offset' = offset'' + lAtt + 1
                             pValue = pBuf `plusPtr` offset'
                         lValue <- fromIntegral <$> c_strlen pValue
                         let value = gxFromByteString $ I.fromForeignPtr buf offset' lValue

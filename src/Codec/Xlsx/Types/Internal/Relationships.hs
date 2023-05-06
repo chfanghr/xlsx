@@ -6,7 +6,6 @@ module Codec.Xlsx.Types.Internal.Relationships where
 import Data.List (find)
 import Data.Map (Map)
 import qualified Data.Map as Map
-import Data.Monoid ((<>))
 import Data.Text (Text)
 import qualified Data.Text as T
 import GHC.Generics (Generic)

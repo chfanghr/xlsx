@@ -12,7 +12,6 @@ samples
 # nix
 result
 result-doc
-*.lock
 *.o
 *.hi
 *.prof

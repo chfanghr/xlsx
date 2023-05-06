@@ -35,7 +35,7 @@ import Data.ByteString (ByteString)
 import qualified Data.ByteString.Lazy as L
 import qualified Data.ByteString.Lazy as LB
 import Data.ByteString.Lazy.Char8 ()
-import Data.List
+import Data.List(stripPrefix, foldl')
 import Data.Map (Map)
 import qualified Data.Map as M
 import Data.Maybe

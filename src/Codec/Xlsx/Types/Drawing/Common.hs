@@ -14,11 +14,9 @@ import Lens.Micro.TH (makeLenses)
 import Control.Lens.TH
 #endif
 import Control.Monad (join)
-import Control.Monad.Fail (MonadFail)
 import Control.DeepSeq (NFData)
 import Data.Default
 import Data.Maybe (catMaybes, listToMaybe)
-import Data.Monoid ((<>))
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Read as T

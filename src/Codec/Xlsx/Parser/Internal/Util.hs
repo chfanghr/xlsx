@@ -8,7 +8,6 @@ module Codec.Xlsx.Parser.Internal.Util
   ) where
 
 import Data.Text (Text)
-import Control.Monad.Fail (MonadFail)
 import qualified Data.Text as T
 import qualified Data.Text.Read as T
 import qualified Control.Monad.Fail as F

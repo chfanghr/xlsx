@@ -3,7 +3,6 @@
 module Codec.Xlsx.Types.Variant where
 
 import Control.DeepSeq (NFData)
-import Control.Monad.Fail (MonadFail)
 import Data.ByteString (ByteString)
 import Data.ByteString.Base64 as B64
 import Data.Text (Text)

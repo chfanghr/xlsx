@@ -58,7 +58,7 @@ import Data.Coerce
 import Data.Conduit (ConduitT)
 import qualified Data.Conduit.List as CL
 import Data.Foldable (fold, traverse_)
-import Data.List
+import Data.List(sortBy)
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
 import Data.Maybe

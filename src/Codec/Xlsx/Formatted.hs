@@ -43,7 +43,6 @@ import Lens.Micro.GHC ()
 #else
 import Control.Lens
 #endif
-import Control.Monad (forM, guard)
 import Control.Monad.State hiding (forM_, mapM)
 import Data.Default
 import Data.Foldable (asum, forM_)

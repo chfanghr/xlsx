@@ -3,7 +3,6 @@
 module Codec.Xlsx.Types.Internal where
 
 import Control.Arrow
-import Data.Monoid ((<>))
 import Data.Text (Text)
 import GHC.Generics (Generic)
 

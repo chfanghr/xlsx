@@ -10,7 +10,7 @@ module DrawingTests
 #ifdef USE_MICROLENS
 import Lens.Micro
 #else
-import Control.Lens
+import Control.Lens hiding (transform)
 #endif
 import Data.ByteString.Lazy (ByteString)
 import Test.Tasty (testGroup, TestTree)
