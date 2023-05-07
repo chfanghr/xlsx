@@ -21,3 +21,5 @@ result-doc
 .envrc
 .direnv
 cabal.project.local
+.pre-commit-config.yaml
+
