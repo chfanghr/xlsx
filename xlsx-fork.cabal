@@ -1,5 +1,5 @@
 cabal-version:   3.4
-name:            xlsx
+name:            xlsx-fork
 version:         0.1.0.0
 license:
 build-type:      Simple
@@ -10,7 +10,7 @@ common shared
   ghc-options:        -Werror -Wall -Wcompat
   default-language:   Haskell2010
   build-depends:
-    , base         >=4.13.0.0 && <5.0
+    , base         >=4.13.0.0 && <4.18.0.0.0
     , bytestring
     , conduit
     , containers
@@ -126,7 +126,7 @@ test-suite xlsx-test
     , tasty
     , tasty-hunit
     , tasty-smallcheck
-    , xlsx
+    , xlsx-fork
 
 benchmark xlsx-bench
   import:         shared
@@ -135,4 +135,4 @@ benchmark xlsx-bench
   hs-source-dirs: benchmarks
   build-depends:
     , criterion
-    , xlsx
+    , xlsx-fork
