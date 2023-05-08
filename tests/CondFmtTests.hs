@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module CondFmtTests
-  ( tests
-  ) where
+module CondFmtTests (
+    tests,
+) where
 
-import Test.Tasty (testGroup, TestTree)
+import Test.Tasty (TestTree, testGroup)
 import Test.Tasty.SmallCheck (testProperty)
 
 import Codec.Xlsx
@@ -17,8 +17,8 @@ import Test.SmallCheck.Series.Instances ()
 
 tests :: TestTree
 tests =
-  testGroup
-    "Types.ConditionalFormatting tests"
-    [ testProperty "fromCursor . toElement == id" $ \(cFmt :: CfRule) ->
-        [cFmt] == fromCursor (cursorFromElement $ toElement (n_ "cfRule") cFmt)
-    ]
+    testGroup
+        "Types.ConditionalFormatting tests"
+        [ testProperty "fromCursor . toElement == id" $ \(cFmt :: CfRule) ->
+            [cFmt] == fromCursor (cursorFromElement $ toElement (n_ "cfRule") cFmt)
+        ]

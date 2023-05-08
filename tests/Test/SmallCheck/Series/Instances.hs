@@ -3,14 +3,13 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
-module Test.SmallCheck.Series.Instances
-  (
-  ) where
+module Test.SmallCheck.Series.Instances (
+    ) where
 
 import Data.Map (Map)
-import qualified Data.Map as Map
+import Data.Map qualified as Map
 import Data.Text (Text)
-import qualified Data.Text as T
+import Data.Text qualified as T
 import Test.SmallCheck.Series
 
 import Codec.Xlsx
@@ -36,41 +35,43 @@ cons6 f = decDepth $
 #endif
 
 instance Monad m => Serial m Text where
-  series = T.pack <$> series
+    series = T.pack <$> series
 
 instance (Serial m k, Serial m v) => Serial m (Map k v) where
-  series = Map.singleton <$> series <~> series
+    series = Map.singleton <$> series <~> series
 
 {-------------------------------------------------------------------------------
   Conditional formatting
 -------------------------------------------------------------------------------}
 
-instance Monad m  => Serial m CfRule
+instance Monad m => Serial m CfRule
 
-instance Monad m  => Serial m Condition where
-  series = localDepth (const 2) $ cons2 AboveAverage
-    \/ cons1 BeginsWith
-    \/ cons2 BelowAverage
-    \/ cons1 BottomNPercent
-    \/ cons1 BottomNValues
-    \/ cons1 CellIs
-    \/ cons4 ColorScale2
-    \/ cons6 ColorScale3
-    \/ cons0 ContainsBlanks
-    \/ cons0 ContainsErrors
-    \/ cons1 ContainsText
-    \/ cons1 DataBar
-    \/ cons0 DoesNotContainErrors
-    \/ cons0 DoesNotContainBlanks
-    \/ cons1 DoesNotContainText
-    \/ cons0 DuplicateValues
-    \/ cons1 EndsWith
-    \/ cons1 Expression
-    \/ cons1 IconSet
-    \/ cons1 InTimePeriod
-    \/ cons1 TopNPercent
-    \/ cons1 TopNValues
-    \/ cons0 UniqueValues
+instance Monad m => Serial m Condition where
+    series =
+        localDepth (const 2) $
+            cons2 AboveAverage
+                \/ cons1 BeginsWith
+                \/ cons2 BelowAverage
+                \/ cons1 BottomNPercent
+                \/ cons1 BottomNValues
+                \/ cons1 CellIs
+                \/ cons4 ColorScale2
+                \/ cons6 ColorScale3
+                \/ cons0 ContainsBlanks
+                \/ cons0 ContainsErrors
+                \/ cons1 ContainsText
+                \/ cons1 DataBar
+                \/ cons0 DoesNotContainErrors
+                \/ cons0 DoesNotContainBlanks
+                \/ cons1 DoesNotContainText
+                \/ cons0 DuplicateValues
+                \/ cons1 EndsWith
+                \/ cons1 Expression
+                \/ cons1 IconSet
+                \/ cons1 InTimePeriod
+                \/ cons1 TopNPercent
+                \/ cons1 TopNValues
+                \/ cons0 UniqueValues
 
 instance Monad m => Serial m NStdDev
 
@@ -102,7 +103,7 @@ instance Monad m => Serial m TimePeriod
 -------------------------------------------------------------------------------}
 
 instance Monad m => Serial m AutoFilter where
-  series = localDepth (const 4) $ cons2 AutoFilter
+    series = localDepth (const 4) $ cons2 AutoFilter
 
 instance Monad m => Serial m CellRef
 

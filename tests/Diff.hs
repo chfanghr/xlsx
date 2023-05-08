@@ -1,9 +1,9 @@
 module Diff where
 
-import           Data.Algorithm.Diff       (getGroupedDiff)
-import           Data.Algorithm.DiffOutput (ppDiff)
-import           Test.Tasty.HUnit          (Assertion, assertBool)
-import           Text.Groom                (groom)
+import Data.Algorithm.Diff (getGroupedDiff)
+import Data.Algorithm.DiffOutput (ppDiff)
+import Test.Tasty.HUnit (Assertion, assertBool)
+import Text.Groom (groom)
 
 -- | Like '@=?' but producing a diff on failure.
 (@==?) :: (Eq a, Show a) => a -> a -> Assertion

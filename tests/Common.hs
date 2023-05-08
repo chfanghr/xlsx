@@ -1,11 +1,12 @@
-{-# LANGUAGE FlexibleInstances     #-}
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
-module Common
-  ( parseBS
-  , cursorFromElement
-  ) where
+module Common (
+    parseBS,
+    cursorFromElement,
+) where
+
 import Data.ByteString.Lazy (ByteString)
 import Text.XML
 import Text.XML.Cursor
@@ -22,4 +23,4 @@ parseBS = fromCursor . fromDocument . parseLBS_ def
 cursorFromElement :: Element -> Cursor
 cursorFromElement = fromNode . NodeElement . addNS mainNamespace Nothing
 
-instance Monad m  => Serial m SheetState
+instance Monad m => Serial m SheetState

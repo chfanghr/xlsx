@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module AutoFilterTests
-  ( tests
-  ) where
+module AutoFilterTests (
+    tests,
+) where
 
-import Test.Tasty (testGroup, TestTree)
+import Test.Tasty (TestTree, testGroup)
 import Test.Tasty.SmallCheck (testProperty)
 
 import Codec.Xlsx
@@ -17,8 +17,8 @@ import Test.SmallCheck.Series.Instances ()
 
 tests :: TestTree
 tests =
-  testGroup
-    "Types.AutFilter tests"
-    [ testProperty "fromCursor . toElement == id" $ \(autoFilter :: AutoFilter) ->
-        [autoFilter] == fromCursor (cursorFromElement $ toElement (n_ "autoFilter") autoFilter)
-    ]
+    testGroup
+        "Types.AutFilter tests"
+        [ testProperty "fromCursor . toElement == id" $ \(autoFilter :: AutoFilter) ->
+            [autoFilter] == fromCursor (cursorFromElement $ toElement (n_ "autoFilter") autoFilter)
+        ]

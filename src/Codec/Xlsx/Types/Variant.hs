@@ -1,13 +1,14 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
+
 module Codec.Xlsx.Types.Variant where
 
 import Control.DeepSeq (NFData)
 import Data.ByteString (ByteString)
 import Data.ByteString.Base64 as B64
 import Data.Text (Text)
-import qualified Data.Text as T
-import qualified Data.Text.Encoding as T
+import Data.Text qualified as T
+import Data.Text.Encoding qualified as T
 import GHC.Generics (Generic)
 import Text.XML
 import Text.XML.Cursor
@@ -34,36 +35,38 @@ instance NFData Variant
 -------------------------------------------------------------------------------}
 
 instance FromCursor Variant where
-  fromCursor = variantFromNode . node
+    fromCursor = variantFromNode . node
 
 variantFromNode :: Node -> [Variant]
-variantFromNode n@(NodeElement el) | elementName el == vt "lpwstr" =
-                                         fromNode n $/ content &| VtLpwstr
-                                   | elementName el == vt "bool" =
-                                         fromNode n $/ content >=> fmap VtBool . boolean
-                                   | elementName el == vt "int" =
-                                         fromNode n $/ content >=> fmap VtInt . decimal
-                                   | elementName el == vt "decimal" =
-                                         fromNode n $/ content >=> fmap VtDecimal . rational
-                                   | elementName el == vt "blob" =
-                                         fromNode n $/ content >=> fmap VtBlob . decodeBase64 . killWhitespace
-variantFromNode  _ = fail "no matching nodes"
+variantFromNode n@(NodeElement el)
+    | elementName el == vt "lpwstr" =
+        fromNode n $/ content &| VtLpwstr
+    | elementName el == vt "bool" =
+        fromNode n $/ content >=> fmap VtBool . boolean
+    | elementName el == vt "int" =
+        fromNode n $/ content >=> fmap VtInt . decimal
+    | elementName el == vt "decimal" =
+        fromNode n $/ content >=> fmap VtDecimal . rational
+    | elementName el == vt "blob" =
+        fromNode n $/ content >=> fmap VtBlob . decodeBase64 . killWhitespace
+variantFromNode _ = fail "no matching nodes"
 
 killWhitespace :: Text -> Text
-killWhitespace = T.filter (/=' ')
+killWhitespace = T.filter (/= ' ')
 
 decodeBase64 :: MonadFail m => Text -> m ByteString
 decodeBase64 t = case B64.decode (T.encodeUtf8 t) of
-  Right bs -> return bs
-  Left err -> fail $ "invalid base64 value: " ++ err
+    Right bs -> return bs
+    Left err -> fail $ "invalid base64 value: " ++ err
 
 -- | Add doc props variant types namespace to name
 vt :: Text -> Name
-vt x = Name
-  { nameLocalName = x
-  , nameNamespace = Just docPropsVtNs
-  , namePrefix = Nothing
-  }
+vt x =
+    Name
+        { nameLocalName = x
+        , nameNamespace = Just docPropsVtNs
+        , namePrefix = Nothing
+        }
 
 docPropsVtNs :: Text
 docPropsVtNs = "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"
@@ -73,8 +76,8 @@ docPropsVtNs = "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVT
 -------------------------------------------------------------------------------}
 
 variantToElement :: Variant -> Element
-variantToElement (VtLpwstr t)  = elementContent (vt"lpwstr")  t
-variantToElement (VtBlob bs)   = elementContent (vt"blob")    (T.decodeLatin1 $ B64.encode bs)
-variantToElement (VtBool b)    = elementContent (vt"bool")    (txtb b)
-variantToElement (VtDecimal d) = elementContent (vt"decimal") (txtd d)
-variantToElement (VtInt i)     = elementContent (vt"int")     (txti i)
+variantToElement (VtLpwstr t) = elementContent (vt "lpwstr") t
+variantToElement (VtBlob bs) = elementContent (vt "blob") (T.decodeLatin1 $ B64.encode bs)
+variantToElement (VtBool b) = elementContent (vt "bool") (txtb b)
+variantToElement (VtDecimal d) = elementContent (vt "decimal") (txtd d)
+variantToElement (VtInt i) = elementContent (vt "int") (txti i)
