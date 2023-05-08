@@ -15,7 +15,6 @@ common shared
     , conduit
     , containers
     , deepseq
-    , lens
     , mtl
     , optics
     , text
@@ -86,11 +85,6 @@ library
     , filepath
     , hexpat
     , indexed-traversable
-    , microlens
-    , microlens-ghc
-    , microlens-mtl
-    , microlens-platform
-    , microlens-th
     , monad-control
     , network-uri
     , old-locale
